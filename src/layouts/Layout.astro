@@ -1,22 +1,23 @@
 ---
+// src/layouts/Layout.astro
 import { Font } from "astro:assets";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
-import { useTranslations } from "../i18n/utils";
 import "../styles/global.css";
 
 const { title } = Astro.props;
-const t = useTranslations();
 
+// ナビゲーションリンクの定義
 const links = [
-  { title: "Home", url: "/" },
-  { title: "About", url: "/" },
-  { title: "Contact", url: "/" },
+  { title: "ホーム", url: "/" },
+  { title: "マニュアル", url: "/manual" },
+  { title: "サービスについて", url: "/" },
+  { title: "お問い合わせ", url: "/" },
 ];
 ---
 
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,17 +26,20 @@ const links = [
     <title>{title}</title>
   </head>
   <body>
-    <a href="#main" class="skip-link">{t("accessibility.skip-to-content")}</a>
+    <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
     <Header
       logoUrl="/"
       logoAlt="VIIO"
       links={links}
-      link1={{ title: "Login", url: "#" }}
-      link2={{ title: "Get Started", url: "#" }}
+      link1={{ title: "ログイン", url: "#" }}
+      link2={{ title: "はじめる", url: "#" }}
     />
+
     <main id="main">
       <slot />
     </main>
+
     <Footer logoUrl="/" logoAlt="VIIO" links={links} />
     <SmoothScroll />
   </body>

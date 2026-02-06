@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+// 1. 全てのマニュアル記事を取得し、パス（slug）を生成
+export async function getStaticPaths() {
+  const manualEntries = await getCollection("manual");
+  return manualEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// 2. 記事データの取得
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <main class="manual-layout">
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .manual-layout {
+    padding: 100px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  /* ここにMarkdown用のスタイル（h1, p, codeなど）を追加 */
+  .prose :global(h1) {
+    font-size: 2rem;
+    border-bottom: 2px solid #eee;
+  }
+  .prose :global(h2) {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+</style>

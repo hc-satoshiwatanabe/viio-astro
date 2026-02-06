@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="操作マニュアル | VIIO">
+  <div class="manual-wrapper">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#intro">1. はじめに</a></li>
+          <li><a href="#setup">2. 初期設定</a></li>
+          <li><a href="#usage">3. 基本的な使い方</a></li>
+          <li><a href="#faq">4. よくある質問</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section id="intro">
+        <h1>操作マニュアル</h1>
+        <p>
+          VIIOをご利用いただきありがとうございます。このドキュメントでは基本的な操作方法を解説します。
+        </p>
+      </section>
+
+      <section id="setup">
+        <h2>初期設定</h2>
+        <p>
+          まずはプロジェクトのセットアップを行います。`src`フォルダ内の設定ファイルを確認してください。
+        </p>
+      </section>
+
+      <section id="usage">
+        <h2>基本的な使い方</h2>
+        <p>
+          コンポーネントを組み合わせて、新しいページを作成する方法を説明します。
+        </p>
+      </section>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .manual-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 140px 20px 80px; /* ヘッダーの高さを考慮 [cite: 5, 6] */
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 140px;
+    height: fit-content;
+    border-right: 1px solid #eee;
+    padding-right: 20px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar li {
+    margin-bottom: 15px;
+  }
+  .sidebar a {
+    text-decoration: none;
+    color: var(--color-text-body);
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .sidebar a:hover {
+    color: var(--color-brand-1);
+  }
+
+  .content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .content h2 {
+    font-size: 1.8rem;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-brand-1);
+  }
+  .content p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+
+  /* モバイル対応：縦並びにする */
+  @media (max-width: 768px) {
+    .manual-wrapper {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      position: relative;
+      top: 0;
+      border-right: none;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+    }
+  }
+</style>
